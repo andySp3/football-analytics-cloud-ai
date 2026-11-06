@@ -30,6 +30,22 @@ def upload_match_data_to_azure(filename, data_dict):
     except Exception as e:
         print(f"Erreur lors du transfert : {e}")
 
+def get_match_data_from_azure(filename):
+    """Vérifie si le fichier existe sur Azure. Si oui, le télécharge et renvoie le dictionnaire."""
+    try:
+        blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+        blob_client = blob_service_client.get_blob_client(container=CONTAINER_NAME, blob=filename)
+        
+        # Vérifier si le blob existe sur le serveur Azure
+        if blob_client.exists():
+            stream = blob_client.download_blob()
+            data_dict = json.loads(stream.readall().decode("utf-8"))
+            return data_dict
+        return None
+    except Exception as e:
+        print(f"Erreur lors de la lecture sur Azure : {e}")
+        return None
+
 if __name__ == "__main__":
     # Test avec un petit objet factice pour valider la passerelle
     donnees_test = {
