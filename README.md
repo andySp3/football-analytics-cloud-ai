@@ -61,8 +61,8 @@ Le projet relie une suite de services cloud et d'APIs dans un pipeline robuste d
 
 1. **Cloner le projet :**
 ```bash
-git clone https://github.com/andySp3/premier-league-predictor.git
-cd premier-league-predictor
+git clone https://github.com/andySp3/football-analytics-cloud-ai.git
+cd football-analytics-cloud-ai
 ```
 
 2. **Créer et activer un environnement virtuel :**
@@ -77,7 +77,7 @@ pip install -r requirements.txt
 ```
 
 4. **Configurer les variables d'environnement :**
-   Créez un fichier `.env` à la racine du projet avec les variables suivantes :
+Créez un fichier `.env` à la racine du projet avec les variables suivantes :
 ```env
 RAPIDAPI_KEY="votre_cle_api_football"
 GEMINI_API_KEY="votre_cle_google_gemini"
