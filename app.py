@@ -4,6 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from google import genai
 from azure_storage import upload_match_data_to_azure, get_match_data_from_azure
+import datetime
 
 # Configuration générale de la page web
 st.set_page_config(
@@ -27,7 +28,9 @@ gemini_client = genai.Client(api_key=gemini_api_key)
 def get_matches():
     url = "https://v3.football.api-sports.io/fixtures"
     headers = {"x-apisports-key": football_api_key}
-    parametres = {"date": "2026-11-05"}
+    # Utilise automatiquement la date du jour au format AAAA-MM-JJ
+    date_du_jour = datetime.date.today().strftime("%Y-%m-%d")
+    parametres = {"date": date_du_jour}
     
     try:
         response = requests.get(url, headers=headers, params=parametres)
