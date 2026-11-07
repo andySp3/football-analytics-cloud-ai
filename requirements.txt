@@ -1,0 +1,6 @@
+streamlit
+requests
+google-genai
+python-dotenv
+azure-storage-blob
+plotly
