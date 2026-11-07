@@ -60,7 +60,7 @@ else:
     choix_label = st.selectbox("Sélectionnez une rencontre :", list(options_matchs.keys()))
     match_choisi = options_matchs[choix_label]
     
-    # Données extraites (y compris les logos)
+    # Données extraites
     infos = {
         "fixture_id": match_choisi["fixture"]["id"],
         "date": match_choisi["fixture"]["date"],
@@ -95,7 +95,7 @@ else:
         with col_top_right:
             st.markdown(f"<div style='text-align: right; color: #888;'><b>{infos['statut']}</b></div>", unsafe_allow_html=True)
             
-        st.write("") # Espacement
+        st.write("")
 
         # Corps : [Équipe Domicile] [Score] [Équipe Extérieur]
         col_home, col_score, col_away = st.columns([2, 1, 2])
@@ -132,20 +132,21 @@ else:
     else:
         st.caption("Ce match n'a pas encore été analysé par l'IA.")
         if st.button("Lancer l'analyse tactique IA", type="primary"):
-            with st.spinner("Archivage sur Azure Blob Storage et analyse en cours par Gemini..."):
+            with st.spinner("Archivage sur Azure Blob Storage et analyse tactique en cours..."):
                 prompt = f"""
-                Tu es un analyste sportif et tactique expert en football.
-                Voici les informations d'une rencontre :
+                Tu es un analyste tactique expert en football.
+                Voici les faits officiels d'une rencontre :
 
                 - Compétition : {infos['competition']} ({infos['pays']})
                 - Rencontre : {infos['equipe_domicile']} contre {infos['equipe_exterieur']}
-                - Statut : {infos['statut']}
-                - Score : {infos['buts_domicile']} - {infos['buts_exterieur']}
+                - Statut actuel : {infos['statut']}
+                - Score enregistré : {infos['buts_domicile']} - {infos['buts_exterieur']}
 
-                En te basant sur ces données et ton expertise :
-                1. Présente brièvement les deux équipes et leur dynamique générale.
-                2. Propose une analyse synthétique de cette affiche (ou un débriefing si terminée).
-                3. Identifie le facteur tactique déterminant de la rencontre.
+                Consignes impératives :
+                1. Analyse la physionomie tactique et le scénario du match au vu du score et du statut (ex: match fermé, domination territoriale, efficacité sur transition rapide).
+                2. Décris la confrontation des styles de jeu de ces deux clubs (ex: bloc bas, jeu direct, pressing haut) de manière analytique.
+                3. Identifie le facteur clé qui fait ou ferait basculer cette rencontre.
+                4. RÈGLE STRICTE : Ne cite aucun nom d'entraîneur, de manager ou de composition d'équipe pour garantir la neutralité temporelle de l'analyse. Concentre-toi à 100% sur le jeu et les clubs.
                 """
                 
                 try:
