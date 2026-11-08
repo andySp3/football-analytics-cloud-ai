@@ -7,7 +7,7 @@
 
 Plateforme web interactive d'analyse sportive et tactique automatisée. L'application agrège en temps réel les données de rencontres de football via une API externe, stocke et met en cache les résultats sur un Data Lake **Microsoft Azure Blob Storage**, et produit des analyses tactiques contextualisées à l'aide du modèle **Google Gemini**.
 
-🔗 **Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)[cite: 1, 11]
+🔗 **Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
 
 ---
 
