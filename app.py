@@ -13,17 +13,15 @@ st.set_page_config(
     layout="wide"
 )
 
-# 1. Chargement des clés secrètes
+# Chargement des clés secrètes
 load_dotenv()
 football_api_key = os.getenv("RAPIDAPI_KEY")
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
-# 2. Initialisation du client Gemini
+# Initialisation du client Gemini
 gemini_client = genai.Client(api_key=gemini_api_key)
 
-# -------------------------------------------------------------
-# Récupération des données depuis l'API Football
-# -------------------------------------------------------------
+# Récupération des données depuis l'API Football (uniquement les matchs du jour)
 @st.cache_data(ttl=3600)
 def get_matches():
     url = "https://v3.football.api-sports.io/fixtures"
@@ -40,24 +38,27 @@ def get_matches():
         st.error(f"Erreur lors de la récupération des données : {e}")
         return []
 
-# -------------------------------------------------------------
 # Interface utilisateur
-# -------------------------------------------------------------
 st.title("⚽ Dashboard Tactique & Analyses de Matchs")
-st.caption("Application connectée en direct à **API-Football**, **Azure Blob Storage** et **Google Gemini**.")
+
+# Affichage de la date du jour
+date_affichage = datetime.date.today().strftime("%d/%m/%Y")
+st.caption(f"📅 **Matchs du jour ({date_affichage})** | Application connectée en direct à **API-Football**, **Azure Blob Storage** et **Google Gemini**.")
 
 matchs = get_matches()
 
 if not matchs:
-    st.warning("Aucun match disponible pour cette date ou problème de quota d'API.")
+    st.warning(f"Aucun match disponible pour la date du jour ({date_affichage}) ou problème de quota d'API.")
 else:
+    st.info(f"ℹ️ Ce tableau de bord prend en compte uniquement les rencontres programmées ou jouées aujourd'hui ({date_affichage}).")
+
     # Sélecteur de rencontre
     options_matchs = {
         f"{m['teams']['home']['name']} vs {m['teams']['away']['name']} ({m['league']['name']})": m
         for m in matchs
     }
     
-    choix_label = st.selectbox("Sélectionnez une rencontre :", list(options_matchs.keys()))
+    choix_label = st.selectbox("Sélectionnez une rencontre du jour :", list(options_matchs.keys()))
     match_choisi = options_matchs[choix_label]
     
     # Données extraites
@@ -78,9 +79,7 @@ else:
     
     st.divider()
 
-    # ---------------------------------------------------------
     # Carte de match style Google
-    # ---------------------------------------------------------
     score_display = (
         f"{infos['buts_domicile']}  -  {infos['buts_exterieur']}"
         if infos["buts_domicile"] is not None
@@ -116,9 +115,7 @@ else:
             
     st.divider()
     
-    # ---------------------------------------------------------
     # Logique Azure Blob Storage & Gemini
-    # ---------------------------------------------------------
     nom_blob = f"match_{infos['fixture_id']}.json"
     donnees_azure = get_match_data_from_azure(nom_blob)
     

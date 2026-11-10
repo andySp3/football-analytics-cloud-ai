@@ -5,17 +5,15 @@ from dotenv import load_dotenv
 from google import genai
 from azure_storage import upload_match_data_to_azure
 
-# 1. Charger les variables d'environnement secrètes
+#Charge les variables d'environnement secrètes
 load_dotenv()
 football_api_key = os.getenv("RAPIDAPI_KEY")
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
-# 2. Initialiser le client Gemini
+# Initialise le client Gemini
 gemini_client = genai.Client(api_key=gemini_api_key)
 
-# -------------------------------------------------------------
-# ÉTAPE A : Récupérer les matchs réels depuis l'API Football
-# -------------------------------------------------------------
+# Récupére les matchs réels depuis l'API Football
 url = "https://v3.football.api-sports.io/fixtures"
 headers = {
     "x-apisports-key": football_api_key
@@ -58,15 +56,11 @@ infos_match = {
 nom_fichier_blob = f"match_{infos_match['fixture_id']}.json"
 print(f"-> Affiche : {infos_match['equipe_domicile']} vs {infos_match['equipe_exterieur']}")
 
-# -------------------------------------------------------------
-# ÉTAPE B : Sauvegarder les données brutes sur Azure Blob Storage
-# -------------------------------------------------------------
+# Sauvegarder les données brutes sur Azure Blob Storage
 print("\n2. Archivage des données sur Microsoft Azure Blob...")
 upload_match_data_to_azure(nom_fichier_blob, infos_match)
 
-# -------------------------------------------------------------
-# ÉTAPE C : Génération de l'analyse avec Gemini
-# -------------------------------------------------------------
+# Génération de l'analyse avec Gemini
 prompt = f"""
 Tu es un analyste sportif et tactique expert en football.
 Voici les informations réelles d'une rencontre extraites en direct :
@@ -88,9 +82,7 @@ reponse_gemini = gemini_client.models.generate_content(
     contents=prompt
 )
 
-# -------------------------------------------------------------
-# ÉTAPE D : Affichage du résultat final
-# -------------------------------------------------------------
+#Affichage du résultat final
 print("\n" + "="*50)
 print("RAPPORT COMPLET (DATA LAKE AZURE + IA)")
 print("="*50)

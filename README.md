@@ -5,7 +5,9 @@
 [![Gemini](https://img.shields.io/badge/Google%20GenAI-Gemini%203.1%20Flash%20Lite-8E75B2?logo=google&logoColor=white)](https://ai.google.dev/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 
-Plateforme web interactive d'analyse sportive et tactique automatisée. L'application agrège en temps réel les données de rencontres de football via une API externe, stocke et met en cache les résultats sur un Data Lake **Microsoft Azure Blob Storage**, et produit des analyses tactiques contextualisées à l'aide du modèle **Google Gemini**.
+Plateforme web interactive d'analyse sportive et tactique automatisée.L'application agrège en temps réel les données des **rencontres de la journée en cours** via une API externe, stocke et met en cache les résultats sur un Data Lake **Microsoft Azure Blob Storage**, et produit des analyses tactiques contextualisées à l'aide du modèle **Google Gemini**.
+
+> **Note sur le périmètre des données :** L'application se concentre exclusivement sur les affiches du **jour actuel** (`datetime.date.today()`). Les rencontres passées ou futures ne sont pas interrogées afin d'optimiser l'utilisation du forfait gratuit de l'API.
 
 🔗 **Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
 

@@ -3,23 +3,23 @@ import json
 from dotenv import load_dotenv
 from azure.storage.blob import BlobServiceClient
 
-# 1. Charger la chaîne de connexion secrète depuis .env
+# Charger la chaîne de connexion secrète depuis .env
 load_dotenv()
 connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
 
-# 2. Nom du conteneur créé sur le portail Azure
+# Nom du conteneur créé sur le portail Azure
 CONTAINER_NAME = "pl-match-data"
 
 def upload_match_data_to_azure(filename, data_dict):
     """Téléverse un dictionnaire Python sous forme de fichier JSON sur Azure Blob Storage."""
     try:
-        # Initialiser la connexion au service Azure
+        # Initialise la connexion au service Azure
         blob_service_client = BlobServiceClient.from_connection_string(connection_string)
         
-        # Récupérer l'accès au conteneur et définir le nom du blob (fichier distant)
+        # Récupére l'accès au conteneur et définir le nom du blob (fichier distant)
         blob_client = blob_service_client.get_blob_client(container=CONTAINER_NAME, blob=filename)
         
-        # Convertir les données en texte JSON formaté
+        # Converti les données en texte JSON formaté
         json_data = json.dumps(data_dict, ensure_ascii=False, indent=4)
         
         print(f"Téléversement de {filename} vers Azure Blob Storage...")
@@ -36,7 +36,7 @@ def get_match_data_from_azure(filename):
         blob_service_client = BlobServiceClient.from_connection_string(connection_string)
         blob_client = blob_service_client.get_blob_client(container=CONTAINER_NAME, blob=filename)
         
-        # Vérifier si le blob existe sur le serveur Azure
+        # Vérifie si le blob existe sur le serveur Azure
         if blob_client.exists():
             stream = blob_client.download_blob()
             data_dict = json.loads(stream.readall().decode("utf-8"))
