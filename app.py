@@ -39,18 +39,18 @@ def get_matches():
         return []
 
 # Interface utilisateur
-st.title("⚽ Dashboard Tactique & Analyses de Matchs")
+st.title("Dashboard Tactique & Analyses de Matchs")
 
 # Affichage de la date du jour
 date_affichage = datetime.date.today().strftime("%d/%m/%Y")
-st.caption(f"📅 **Matchs du jour ({date_affichage})** | Application connectée en direct à **API-Football**, **Azure Blob Storage** et **Google Gemini**.")
+st.caption(f"**Matchs du jour ({date_affichage})** | Application connectée en direct à **API-Football**, **Azure Blob Storage** et **Google Gemini**.")
 
 matchs = get_matches()
 
 if not matchs:
     st.warning(f"Aucun match disponible pour la date du jour ({date_affichage}) ou problème de quota d'API.")
 else:
-    st.info(f"ℹ️ Ce tableau de bord prend en compte uniquement les rencontres programmées ou jouées aujourd'hui ({date_affichage}).")
+    st.info(f"Ce tableau de bord prend en compte uniquement les rencontres programmées ou jouées aujourd'hui ({date_affichage}).")
 
     # Sélecteur de rencontre
     options_matchs = {
