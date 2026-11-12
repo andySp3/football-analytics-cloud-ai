@@ -9,7 +9,6 @@ import datetime
 # Configuration générale de la page web
 st.set_page_config(
     page_title="Football AI Tactics & Match Analytics",
-    page_icon="⚽",
     layout="wide"
 )
 
