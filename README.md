@@ -1,4 +1,4 @@
-# ⚽ Football AI Tactics & Match Analytics Dashboard
+# Football AI Tactics & Match Analytics Dashboard
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
 [![Azure](https://img.shields.io/badge/Azure-App%20Service%20%7C%20Blob%20Storage-0078D4?logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/)
@@ -9,11 +9,11 @@ Plateforme web interactive d'analyse sportive et tactique automatisée.L'applica
 
 > **Note sur le périmètre des données :** L'application se concentre exclusivement sur les affiches du **jour actuel** (`datetime.date.today()`). Les rencontres passées ou futures ne sont pas interrogées afin d'optimiser l'utilisation du forfait gratuit de l'API.
 
-🔗 **Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
+**Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
 
 ---
 
-## 🏗️ Architecture du Système
+## Architecture du Système
 
 Le projet relie une suite de services cloud et d'APIs dans un pipeline robuste de bout en bout :
 
@@ -41,7 +41,7 @@ Le projet relie une suite de services cloud et d'APIs dans un pipeline robuste d
 
 ---
 
-## 🛠️ Stack Technique
+## Stack Technique
 
 * **Langage :** Python 3.11+
 * **Frontend :** Streamlit
@@ -52,7 +52,7 @@ Le projet relie une suite de services cloud et d'APIs dans un pipeline robuste d
 
 ---
 
-## 🚀 Installation et Lancement Local
+## Installation et Lancement Local
 
 ### Prérequis
 * Python 3.11 ou supérieur installé
