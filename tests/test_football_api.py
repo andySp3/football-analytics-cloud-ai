@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-# 1. Charger la clé secrète du fichier .env[cite: 30, 38]
+# 1. Charger la clé secrète du fichier .env
 load_dotenv()
 api_key = os.getenv("RAPIDAPI_KEY")
 
