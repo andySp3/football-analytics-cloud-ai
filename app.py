@@ -120,7 +120,7 @@ else:
     
     # CAS 1 : Présent dans le Cache Cloud Azure
     if donnees_azure and "analyse_ia" in donnees_azure:
-        st.info("⚡ Données et analyse chargées instantanément depuis Azure Blob Storage (Cache Cloud actif).")
+        st.info("Données et analyse chargées instantanément depuis Azure Blob Storage (Cache Cloud actif).")
         st.subheader("Rapport d'analyse tactique (Archivé)")
         st.markdown(donnees_azure["analyse_ia"])
         
