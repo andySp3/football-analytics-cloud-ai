@@ -10,6 +10,7 @@ Plateforme web interactive d'analyse sportive et tactique automatisée.L'applica
 > **Note sur le périmètre des données :** L'application se concentre exclusivement sur les affiches du **jour actuel** (`datetime.date.today()`). Les rencontres passées ou futures ne sont pas interrogées afin d'optimiser l'utilisation du forfait gratuit de l'API.
 
 **Démo en ligne :** [Accéder à l'application déployée sur Azure](https://football-ai-predictor-andy-gffuasgcgke2d4b8.spaincentral-01.azurewebsites.net)
+**Présentation Vidéo (Walkthrough) :** [Voir les démonstrations et explications techniques (2 x 5 min sur Google Drive)](https://drive.google.com/drive/folders/1udheSG8h3mgUd_UvgtEt15gS0iey9z8A?usp=sharing)
 
 ---
 
